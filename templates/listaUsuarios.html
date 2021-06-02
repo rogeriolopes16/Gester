@@ -1,0 +1,37 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<div class="d-flex justify-content-between">
+    <a class="btn btn-outline-secondary" href="{{ url_for('novoUsuario') }}">Novo Usuário</a>
+</div>
+
+
+<div style="vertical-align: middle; text-align: center;">
+    <table class="table table-md table-hover">
+        <thead class="thead-default">
+        <tr style="background:#F2F2F2; color: #343A40">
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Usuário</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for lista in usuarios %}
+        <tr ondblclick="window.location.href = '{{ url_for('editarUsuario', id=lista.id) }}';" class="fontFormList">
+            <td>{{ lista.nome }}</td>
+            <td>{{ lista.email }}</td>
+            <td>{{ lista.usuario }}</td>
+            <td>
+                {% if lista.status == 'ATIVO' %}
+                <img src="{{ url_for('static', filename='/img/green.png') }}" alt="User Icon"  width="20px"/>
+                {% else %}
+                <img src="{{ url_for('static', filename='/img/red.png') }}" alt="User Icon"  width="20px"/>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

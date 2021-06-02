@@ -1,0 +1,10 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<div>
+    <a class="btn btn-outline-success" href="{{ url_for('impBlazonNew', file=conteudo) }}">Importar Novos Usuários</a>
+</div>
+<div>
+    <a class="btn btn-outline-danger" href="{{ url_for('impBlazonRevoga', file=conteudo) }}">Importar Rovogação Usuários</a>
+</div>
+
+{% endblock %}

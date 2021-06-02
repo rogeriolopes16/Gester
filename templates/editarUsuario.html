@@ -1,0 +1,88 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<form action="{{ url_for('atualizarUsuario') }}" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <input type="hidden" name="id" value="{{ idcad }}">
+        <input type="hidden" name="usuario" value="{{ usuario.usuario }}">
+        <input type="hidden" id="cpf" name="cpf" value="{{ usuario.cpf }}">
+        <div class="form-row d-flex justify-content-between">
+            <div class="form-group col-4">
+                <label for="usuarios" class="sr-only">Usuário</label>
+                <div class="input-group mb-2 mr-sm-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text fontForm">Usuário</div>
+                    </div>
+                    <input type="text" id="usuarios" name="usuarios" class="form-control fontForm" maxlength="20" required="required" value="{{ usuario.usuario }}" disabled="disabled">
+                </div>
+            </div>
+            <div class="form-group col-5">
+                <label for="data_revogacao" class="sr-only">Data Fim Usuário</label>
+                <div class="input-group mb-2 mr-sm-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text fontForm">Data Fim Usuário</div>
+                    </div>
+                    <input type="date" id="data_revogacao" name="data_revogacao" class="form-control fontForm" required="required" value="{{ usuario.data_revogacao }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row d-flex justify-content-between">
+            <div class="form-group col-8">
+                <label for="nome" class="sr-only">Nome</label>
+                <div class="input-group mb-2 mr-sm-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text fontForm">Nome</div>
+                    </div>
+                    <input type="text" id="nome" name="nome" class="form-control fontForm" maxlength="100" required="required" value="{{ usuario.nome }}">
+                </div>
+            </div>
+            <div class="form-group col-4">
+                <label for="cpf" class="sr-only">CPF</label>
+                <div class="input-group mb-2 mr-sm-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text fontForm">CPF</div>
+                    </div>
+                    <input type="text" id="cpff" name="cpff" class="form-control fontForm" maxlength="11" required="required" value="{{ usuario.cpf }}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row d-flex justify-content-between">
+            <div class="form-group col-8">
+                <label for="email" class="sr-only">Email</label>
+                <div class="input-group mb-2 mr-sm-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text fontForm">Email</div>
+                    </div>
+                    <input type="email" id="email" name="email" class="form-control fontForm" maxlength="100" required="required" value="{{ usuario.email }}">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success btn-salvar fontForm">Salvar</button>
+        <a class="btn btn-secondary fontForm" href="{{ url_for('usuarios') }}">Voltar</a>
+        <a class="btn btn-outline-warning fontForm" href="{{ url_for('reset', id=idcad, username=usuario.usuario) }}">Resetar Senha</a>
+        <button type="button" class="btn btn-outline-danger fontForm" data-toggle="modal" data-target="#modalExemplo">Excluir Usuário</button>
+
+
+        <!-- Modal de confirmação-->
+        <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deseja excluir este usuário?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+                <a class="btn btn-danger" href="{{ url_for('deletarUsuario', id=idcad) }}">Excluir</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+    </fieldset>
+</form>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="btn btn-outline-secondary" href="{{ url_for('novo') }}">Novo Cadastro</a>
+    </div>
+    <div>
+        <form method="POST" action="{{ url_for('indexSearch') }}" class="form-inline">
+            <div class="fontFormList"  style="vertical-align: middle;">
+                <div class="form-check form-check-inline" style="justify-content: left;">
+                    <input class="form-check-input" type="radio" name="searchRadio" id="searcht" value="terceiro" checked>
+                    <label class="form-check-label" for="searcht">Terceiro</label>
+                </div>
+                <div class="form-check form-check-inline" style="justify-content: left;">
+                    <input class="form-check-input" type="radio" name="searchRadio" id="searchr" value="responsavel">
+                    <label class="form-check-label" for="searchr">Responsável</label>
+                </div>
+            </div>
+
+            <div class="form-group mb-2">
+                <input type="search" id="search" name="search" class="form-control" placeholder="Por quem precisa procurar?" style="width:400px">
+            </div>
+            <div class="form-group mx-sm-2 mb-2">
+                <button type="submit" class="btn btn-outline-secondary btn-salvar mb-0">Pesquisar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="text-align: center; vertical-align: middle;">
+<table class="table table-md table-hover">
+    <thead class="thead-default" >
+    <tr style="background:#F2F2F2; color: #343A40">
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Responsável</th>
+        <th scope="col">Expiração</th>
+        <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for lista in cadastros %}
+    <tr ondblclick="window.location.href = '{{ url_for('editar', id=lista.id) }}';"  class="fontFormList">
+        <td>{{ lista.nome }}</td>
+        <td>{{ lista.email }}</td>
+        <td>{{ lista.responsavel }}</td>
+        <td>{{ lista.data_fim_contrato }}</td>
+        <td>
+            {% if lista.status == 'ATIVO' %}
+                <img src="{{ url_for('static', filename='/img/green.png') }}" alt="User Icon" width="20px"/>
+            {% else %}
+                <img src="{{ url_for('static', filename='/img/red.png') }}" alt="User Icon" width="20px"/>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

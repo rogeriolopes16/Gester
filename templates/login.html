@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="sortcut icon" href="{{ url_for('static', filename='/img/logo.png') }}" type="image/x-icon" />
+    <title>Gester - Gestão Terceiros</title>
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/vendor/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/fonts/iconic/css/material-design-iconic-font.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/vendor/animate/animate.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/vendor/css-hamburgers/hamburgers.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/vendor/animsition/css/animsition.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/vendor/select2/select2.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/vendor/daterangepicker/daterangepicker.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login/css/main.css') }}">
+
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="POST" action="{{ url_for('autenticar') }}">
+                    <div class="login100-form-title p-b-34 p-t-27">
+                        <img src="{{ url_for('static', filename='/img/csc.png') }}" id="icon" alt="User Icon" />
+                    </div>
+					<span class="login100-form-title p-b-34 p-t-27">
+						Gestão de Terceiros
+					</span>
+					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+                        <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
+						<input class="input100" type="text" name="usuario" id="usuario" placeholder="Usuário">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" name="senha" id="senha" placeholder="Senha">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-90">
+                        <div id="formFooter">
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            <ul id="messages" class="list-unstyled" style="color: white;">
+                                {% for message in messages %}
+                                <li class="alert">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="dropDownSelect1"></div>
+	<script src="{{ url_for('static', filename='/login/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='/login/vendor/animsition/js/animsition.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='/login/vendor/bootstrap/js/popper.js') }}"></script>
+	<script src="{{ url_for('static', filename='/login/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='/login/vendor/select2/select2.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='/login/vendor/daterangepicker/moment.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='/login/vendor/daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ url_for('static', filename='/login/vendor/countdowntime/countdowntime.js') }}"></script>
+	<script src="{{ url_for('static', filename='/login/js/main.js') }}"></script>
+
+</body>
+</html>
